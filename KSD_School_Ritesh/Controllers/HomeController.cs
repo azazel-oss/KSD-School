@@ -137,31 +137,30 @@ namespace KSD_School_Ritesh.Controllers
         ///
         ////
         ///
-        public ActionResult _class()
+        public ActionResult Class()
         {
-
             return View();
         }
-        public JsonResult claList()
+        public JsonResult ClassList()
         {
-            return Json(classObj.claListAll(), JsonRequestBehavior.AllowGet);
+            return Json(classObj.ClassListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult claAdd(Class emp)
+        public JsonResult ClassAdd(Class _class)
         {
-            return Json(classObj.claAdd(emp), JsonRequestBehavior.AllowGet);
+            return Json(classObj.ClassAdd(_class), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult claGetbyID(int ID)
+        public JsonResult ClassGetbyID(int ID)
         {
-            var clas = classObj.claListAll().Find(x => x.Class_id.Equals(ID));
+            var clas = classObj.ClassListAll().Find(x => x.Class_id.Equals(ID));
             return Json(clas, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult claUpdate(Class emp)
+        public JsonResult ClassUpdate(Class _class)
         {
-            return Json(classObj.claUpdate(emp), JsonRequestBehavior.AllowGet);
+            return Json(classObj.ClassUpdate(_class), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult claDelete(int ID)
+        public JsonResult ClassDelete(int ID)
         {
-            return Json(classObj.claDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(classObj.ClassDelete(ID), JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 
