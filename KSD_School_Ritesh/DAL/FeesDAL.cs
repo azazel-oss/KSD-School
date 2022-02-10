@@ -15,9 +15,9 @@ namespace KSD_School_Ritesh.DAL
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
 
         //Return list of all Students  
-        public List<Fees> feListAll()
+        public List<Fees> FeeListAll()
         {
-            List<Fees> lst = new List<Fees>();
+            List<Fees> feeList = new List<Fees>();
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
@@ -27,7 +27,7 @@ namespace KSD_School_Ritesh.DAL
                 SqlDataReader rdr = com.ExecuteReader();
                 while (rdr.Read())
                 {
-                    lst.Add(new Fees
+                    feeList.Add(new Fees
                     {
                         Fee_id = Convert.ToInt32(rdr["Fee_id"]),
                         FeeType = rdr["FeeType"].ToString(),
@@ -38,7 +38,7 @@ namespace KSD_School_Ritesh.DAL
                         comments = rdr["Amount_pending"].ToString(),
                     });
                 }
-                return lst;
+                return feeList;
             }
         }
 
@@ -66,7 +66,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Updating Class record  
-        public int feUpdate(Fees sub)
+        public int FeeUpdate(Fees sub)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -115,7 +115,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Deleting an Class  
-        public int feDelete(int ID)
+        public int FeeDelete(int ID)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))

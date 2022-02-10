@@ -11,26 +11,23 @@ namespace KSD_School_Ritesh.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult login()
+        public ActionResult Login()
         {
-
             return View();
         }
-        public ActionResult index()
+        public ActionResult Index()
         {
-
             return View();
         }
         StudentDAL studentObj = new StudentDAL();
         ClassDAL classObj = new ClassDAL();
-        FeesDAL feesDAL = new FeesDAL();
+        FeesDAL feesObj = new FeesDAL();
         StaffDAL staffObj = new StaffDAL();
         SubjectsDAL subjectObj = new SubjectsDAL();
         SessionDAL sessionObj = new SessionDAL();
 
-        public ActionResult student()
+        public ActionResult Student()
         {
-            
             return View();
         }
 
@@ -80,61 +77,60 @@ namespace KSD_School_Ritesh.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult staff()
+        public ActionResult Staff()
         {
 
             return View();
         }
-        public JsonResult staList()
+        public JsonResult StaffList()
         {
-            return Json(staffObj.staListAll(), JsonRequestBehavior.AllowGet);
+            return Json(staffObj.StaffListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult staAdd(Staff emp)
+        public JsonResult StaffAdd(Staff staff)
         {
-            return Json(staffObj.staAdd(emp), JsonRequestBehavior.AllowGet);
+            return Json(staffObj.StaffAdd(staff), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult stagetbyID(int ID)
+        public JsonResult StaffGetbyID(int ID)
         {
-            var Staf = staffObj.staListAll().Find(x => x.Staff_id.Equals(ID));
-            return Json(Staf, JsonRequestBehavior.AllowGet);
+            var _staff = staffObj.StaffListAll().Find(x => x.Staff_id.Equals(ID));
+            return Json(_staff, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult staUpdate(Staff emp)
+        public JsonResult StaffUpdate(Staff staff)
         {
-            return Json(staffObj.staUpdate(emp), JsonRequestBehavior.AllowGet);
+            return Json(staffObj.StaffUpdate(staff), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult staDelete(int ID)
+        public JsonResult StaffDelete(int ID)
         {
-            return Json(staffObj.staDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(staffObj.StaffDelete(ID), JsonRequestBehavior.AllowGet);
         }
         ////
         ///
 
         ///
-        public ActionResult fees()
+        public ActionResult Fees()
         {
-
             return View();
         }
-        public JsonResult feList()
+        public JsonResult FeeList()
         {
-            return Json(feesDAL.feListAll(), JsonRequestBehavior.AllowGet);
+            return Json(feesObj.FeeListAll(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult AddFee(Fees fee)
         {
-            return Json(feesDAL.FeeAdd(fee), JsonRequestBehavior.AllowGet);
+            return Json(feesObj.FeeAdd(fee), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult feGetbyID(int ID)
+        public JsonResult FeeGetbyID(int ID)
         {
-            var fee = feesDAL.feListAll().Find(x => x.Fee_id.Equals(ID));
+            var fee = feesObj.FeeListAll().Find(x => x.Fee_id.Equals(ID));
             return Json(fee, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult feUpdate(Fees emp)
+        public JsonResult FeeUpdate(Fees fee)
         {
-            return Json(feesDAL.feUpdate(emp), JsonRequestBehavior.AllowGet);
+            return Json(feesObj.FeeUpdate(fee), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult feDelete(int ID)
+        public JsonResult FeeDelete(int ID)
         {
-            return Json(feesDAL.feDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(feesObj.FeeDelete(ID), JsonRequestBehavior.AllowGet);
         }
 
         ////

@@ -15,7 +15,7 @@ namespace KSD_School_Ritesh.DAL
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
 
         //Return list of all Students  
-        public List<Staff> staListAll()
+        public List<Staff> StaffListAll()
         {
             List<Staff> staffList = new List<Staff>();
             using (SqlConnection con = new SqlConnection(cs))
@@ -50,7 +50,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Adding an Class  
-        public int staAdd(Staff sub)
+        public int StaffAdd(Staff sub)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -78,7 +78,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Updating Class record  
-        public int staUpdate(Staff sub)
+        public int StaffUpdate(Staff sub)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -105,7 +105,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Deleting an Class  
-        public int staDelete(int ID)
+        public int StaffDelete(int ID)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
