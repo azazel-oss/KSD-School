@@ -166,31 +166,30 @@ namespace KSD_School_Ritesh.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public ActionResult subjects()
+        public ActionResult Subjects()
         {
-
             return View();
         }
-        public JsonResult subList()
+        public JsonResult SubjectList()
         {
-            return Json(subjectObj.subListAll(), JsonRequestBehavior.AllowGet);
+            return Json(subjectObj.SubjectListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult subAdd(Subjects emp)
+        public JsonResult SubjectAdd(Subjects subject)
         {
-            return Json(subjectObj.subAdd(emp), JsonRequestBehavior.AllowGet);
+            return Json(subjectObj.SubjectAdd(subject), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult subGetbyID(int ID)
+        public JsonResult SubjectGetByID(int ID)
         {
-            var subj = subjectObj.subListAll().Find(x => x.Subject_id.Equals(ID));
-            return Json(subj, JsonRequestBehavior.AllowGet);
+            var subject = subjectObj.SubjectListAll().Find(x => x.Subject_id.Equals(ID));
+            return Json(subject, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult subUpdate(Subjects emp)
+        public JsonResult SubjectUpdate(Subjects subject)
         {
-            return Json(subjectObj.subUpdate(emp), JsonRequestBehavior.AllowGet);
+            return Json(subjectObj.SubjectUpdate(subject), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult subDelete(int ID)
+        public JsonResult SubjectDelete(int ID)
         {
-            return Json(subjectObj.subDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(subjectObj.SubjectDelete(ID), JsonRequestBehavior.AllowGet);
         }
 
     }
