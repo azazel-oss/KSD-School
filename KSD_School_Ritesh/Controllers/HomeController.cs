@@ -5,191 +5,192 @@ using System.Web;
 using System.Web.Mvc;
 using KSD_School_Ritesh.Models;
 using KSD_School_Ritesh.DAL;
-using System.Dynamic;
 
 namespace KSD_School_Ritesh.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Login()
+        
+        public ActionResult index()
         {
-            return View();
-        }
-        public ActionResult Index()
-        {
-            return View();
-        }
-        StudentDAL studentObj = new StudentDAL();
-        ClassDAL classObj = new ClassDAL();
-        FeesDAL feesObj = new FeesDAL();
-        StaffDAL staffObj = new StaffDAL();
-        SubjectsDAL subjectObj = new SubjectsDAL();
-        SessionDAL sessionObj = new SessionDAL();
 
-        public ActionResult Student()
-        {
             return View();
         }
+        StudentDAL studentDal=new StudentDAL();
+        ClassDAL classDal = new ClassDAL();
+        FeesDAL feesDAL = new FeesDAL();
+        StaffDAL staffDAL = new StaffDAL();
+        SubjectsDAL subjectDAL = new SubjectsDAL();
 
-        public ActionResult StudentDetails(int Id)
+        public ActionResult student()
         {
-            dynamic mymodel = new ExpandoObject();
-            mymodel.student = studentObj.GetStudentById(Id);
-            FeesDAL objFees = new FeesDAL();
-            ViewData["FeeList"] = objFees.GetFeesFromStudentId(Id);
-            mymodel.SessionList = sessionObj.ListAllSession();
-            return View(mymodel);
+           if ( Session["Username"] == null) 
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            else { return View(); }
+           
         }
         public JsonResult List()
         {
-            return Json(studentObj.ListAll(), JsonRequestBehavior.AllowGet);
+            return Json(studentDal.ListAll(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult Add(Student emp)
         {
-            return Json(studentObj.Add(emp), JsonRequestBehavior.AllowGet);
+            return Json(studentDal.Add(emp), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetbyID(int ID)
         {
-            var Student = studentObj.ListAll().Find(x => x.Student_id.Equals(ID));
+            var Student = studentDal.ListAll().Find(x => x.Student_id.Equals(ID));
             return Json(Student, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Update(Student emp)
         {
-            return Json(studentObj.Update(emp), JsonRequestBehavior.AllowGet);
+            return Json(studentDal.Update(emp), JsonRequestBehavior.AllowGet);
         }
         public JsonResult Delete(int ID)
         {
-            return Json(studentObj.Delete(ID), JsonRequestBehavior.AllowGet);
+            return Json(studentDal.Delete(ID), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ListSession()
-        {
-            return Json(sessionObj.ListAllSession(), JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult AddSession(Session session)
-        {
-            return Json(sessionObj.AddSession(session), JsonRequestBehavior.AllowGet);
-        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
 
-        public ActionResult Staff()
+        public ActionResult staff()
         {
 
-            return View();
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            else { return View(); }
         }
-        public JsonResult StaffList()
+        public JsonResult staList()
         {
-            return Json(staffObj.StaffListAll(), JsonRequestBehavior.AllowGet);
+            return Json(staffDAL.staListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult StaffAdd(Staff staff)
+        public JsonResult staAdd(Staff emp)
         {
-            return Json(staffObj.StaffAdd(staff), JsonRequestBehavior.AllowGet);
+            return Json(staffDAL.staAdd(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult StaffGetbyID(int ID)
+        public JsonResult stagetbyID(int ID)
         {
-            var _staff = staffObj.StaffListAll().Find(x => x.Staff_id.Equals(ID));
-            return Json(_staff, JsonRequestBehavior.AllowGet);
+            var Staf = staffDAL.staListAll().Find(x => x.Staff_id.Equals(ID));
+            return Json(Staf, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult StaffUpdate(Staff staff)
+        public JsonResult staUpdate(Staff emp)
         {
-            return Json(staffObj.StaffUpdate(staff), JsonRequestBehavior.AllowGet);
+            return Json(staffDAL.staUpdate(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult StaffDelete(int ID)
+        public JsonResult staDelete(int ID)
         {
-            return Json(staffObj.StaffDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(staffDAL.staDelete(ID), JsonRequestBehavior.AllowGet);
         }
         ////
         ///
 
         ///
-        public ActionResult Fees()
+        public ActionResult fees()
         {
-            return View();
+
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            else { return View(); }
         }
-        public JsonResult FeeList()
+        public JsonResult feList()
         {
-            return Json(feesObj.FeeListAll(), JsonRequestBehavior.AllowGet);
+            return Json(feesDAL.feListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddFee(Fees fee)
+        public JsonResult feAdd(Fees emp)
         {
-            return Json(feesObj.FeeAdd(fee), JsonRequestBehavior.AllowGet);
+            return Json(feesDAL.feAdd(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult FeeGetbyID(int ID)
+        public JsonResult feGetbyID(int ID)
         {
-            var fee = feesObj.FeeListAll().Find(x => x.Fee_id.Equals(ID));
+            var fee = feesDAL.feListAll().Find(x => x.Fee_id.Equals(ID));
             return Json(fee, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult FeeUpdate(Fees fee)
+        public JsonResult feUpdate(Fees emp)
         {
-            return Json(feesObj.FeeUpdate(fee), JsonRequestBehavior.AllowGet);
+            return Json(feesDAL.feUpdate(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult FeeDelete(int ID)
+        public JsonResult feDelete(int ID)
         {
-            return Json(feesObj.FeeDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(feesDAL.feDelete(ID), JsonRequestBehavior.AllowGet);
         }
 
         ////
         ///
         ////
         ///
-        public ActionResult Class()
+        public ActionResult _class()
         {
-            return View();
+
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            else { return View(); }
         }
-        public JsonResult ClassList()
+        public JsonResult claList()
         {
-            return Json(classObj.ClassListAll(), JsonRequestBehavior.AllowGet);
+            return Json(classDal.claListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ClassAdd(Class _class)
+        public JsonResult claAdd(Class emp)
         {
-            return Json(classObj.ClassAdd(_class), JsonRequestBehavior.AllowGet);
+            return Json(classDal.claAdd(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ClassGetbyID(int ID)
+        public JsonResult claGetbyID(int ID)
         {
-            var clas = classObj.ClassListAll().Find(x => x.Class_id.Equals(ID));
+            var clas = classDal.claListAll().Find(x => x.Class_id.Equals(ID));
             return Json(clas, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ClassUpdate(Class _class)
+        public JsonResult claUpdate(Class emp)
         {
-            return Json(classObj.ClassUpdate(_class), JsonRequestBehavior.AllowGet);
+            return Json(classDal.claUpdate(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult ClassDelete(int ID)
+        public JsonResult claDelete(int ID)
         {
-            return Json(classObj.ClassDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(classDal.claDelete(ID), JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public ActionResult Subjects()
+        public ActionResult subjects()
         {
-            return View();
+
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            else { return View(); }
         }
-        public JsonResult SubjectList()
+        public JsonResult subList()
         {
-            return Json(subjectObj.SubjectListAll(), JsonRequestBehavior.AllowGet);
+            return Json(subjectDAL.subListAll(), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SubjectAdd(Subjects subject)
+        public JsonResult subAdd(Subjects emp)
         {
-            return Json(subjectObj.SubjectAdd(subject), JsonRequestBehavior.AllowGet);
+            return Json(subjectDAL.subAdd(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SubjectGetByID(int ID)
+        public JsonResult subGetbyID(int ID)
         {
-            var subject = subjectObj.SubjectListAll().Find(x => x.Subject_id.Equals(ID));
-            return Json(subject, JsonRequestBehavior.AllowGet);
+            var subj = subjectDAL.subListAll().Find(x => x.Subject_id.Equals(ID));
+            return Json(subj, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SubjectUpdate(Subjects subject)
+        public JsonResult subUpdate(Subjects emp)
         {
-            return Json(subjectObj.SubjectUpdate(subject), JsonRequestBehavior.AllowGet);
+            return Json(subjectDAL.subUpdate(emp), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SubjectDelete(int ID)
+        public JsonResult subDelete(int ID)
         {
-            return Json(subjectObj.SubjectDelete(ID), JsonRequestBehavior.AllowGet);
+            return Json(subjectDAL.subDelete(ID), JsonRequestBehavior.AllowGet);
         }
 
     }

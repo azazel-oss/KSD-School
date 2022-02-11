@@ -382,7 +382,7 @@ intellisense.annotate(jQuery, {
     ///   <returns type="jQuery" />
     /// </signature>
   },
-  'sub': function() {
+  'subjectDAL': function() {
     /// <summary>Creates a new copy of jQuery whose properties and methods can be modified without affecting the original jQuery object.</summary>
     /// <returns type="jQuery" />
   },

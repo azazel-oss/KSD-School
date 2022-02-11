@@ -15,7 +15,7 @@ namespace KSD_School_Ritesh.DAL
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
 
         //Return list of all Students  
-        public List<Staff> StaffListAll()
+        public List<Staff> staListAll()
         {
             List<Staff> staffList = new List<Staff>();
             using (SqlConnection con = new SqlConnection(cs))
@@ -50,7 +50,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Adding an Class  
-        public int StaffAdd(Staff sub)
+        public int staAdd(Staff subjectDAL)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -58,18 +58,18 @@ namespace KSD_School_Ritesh.DAL
                 con.Open();
                 SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@feild1", sub.Staff_id);
-                com.Parameters.AddWithValue("@feild2", sub.Name);
-                com.Parameters.AddWithValue("@feild4", sub.DO_joining);
-                com.Parameters.AddWithValue("@feild5", sub.DO_relieve);
-                com.Parameters.AddWithValue("@feild3", sub.DOB);
-                com.Parameters.AddWithValue("@feild6", sub.Is_retired);
-                com.Parameters.AddWithValue("@feild7", sub.Is_teacher);
-                com.Parameters.AddWithValue("@feild8", sub.Role);
-                com.Parameters.AddWithValue("@feild9", sub.Mobile_no);
-                com.Parameters.AddWithValue("@feild10", sub.Salary);
-                com.Parameters.AddWithValue("@feild11", sub.Emergency_Contact);
-                com.Parameters.AddWithValue("@feild12", sub.Department);
+                com.Parameters.AddWithValue("@feild1", subjectDAL.Staff_id);
+                com.Parameters.AddWithValue("@feild2", subjectDAL.Name);
+                com.Parameters.AddWithValue("@feild4", subjectDAL.DO_joining);
+                com.Parameters.AddWithValue("@feild5", subjectDAL.DO_relieve);
+                com.Parameters.AddWithValue("@feild3", subjectDAL.DOB);
+                com.Parameters.AddWithValue("@feild6", subjectDAL.Is_retired);
+                com.Parameters.AddWithValue("@feild7", subjectDAL.Is_teacher);
+                com.Parameters.AddWithValue("@feild8", subjectDAL.Role);
+                com.Parameters.AddWithValue("@feild9", subjectDAL.Mobile_no);
+                com.Parameters.AddWithValue("@feild10", subjectDAL.Salary);
+                com.Parameters.AddWithValue("@feild11", subjectDAL.Emergency_Contact);
+                com.Parameters.AddWithValue("@feild12", subjectDAL.Department);
 
                 com.Parameters.AddWithValue("@table", "3");
                 i = com.ExecuteNonQuery();
@@ -78,7 +78,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Updating Class record  
-        public int StaffUpdate(Staff sub)
+        public int staUpdate(Staff subjectDAL)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -86,18 +86,18 @@ namespace KSD_School_Ritesh.DAL
                 con.Open();
                 SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@feild1", sub.Staff_id);
-                com.Parameters.AddWithValue("@feild2", sub.Name);
-                com.Parameters.AddWithValue("@feild4", sub.DO_joining);
-                com.Parameters.AddWithValue("@feild5", sub.DO_relieve);
-                com.Parameters.AddWithValue("@feild3", sub.DOB);
-                com.Parameters.AddWithValue("@feild6", sub.Is_retired);
-                com.Parameters.AddWithValue("@feild7", sub.Is_teacher);
-                com.Parameters.AddWithValue("@feild8", sub.Role);
-                com.Parameters.AddWithValue("@feild9", sub.Mobile_no);
-                com.Parameters.AddWithValue("@feild10", sub.Salary);
-                com.Parameters.AddWithValue("@feild11", sub.Emergency_Contact);
-                com.Parameters.AddWithValue("@feild12", sub.Department);
+                com.Parameters.AddWithValue("@feild1", subjectDAL.Staff_id);
+                com.Parameters.AddWithValue("@feild2", subjectDAL.Name);
+                com.Parameters.AddWithValue("@feild4", subjectDAL.DO_joining);
+                com.Parameters.AddWithValue("@feild5", subjectDAL.DO_relieve);
+                com.Parameters.AddWithValue("@feild3", subjectDAL.DOB);
+                com.Parameters.AddWithValue("@feild6", subjectDAL.Is_retired);
+                com.Parameters.AddWithValue("@feild7", subjectDAL.Is_teacher);
+                com.Parameters.AddWithValue("@feild8", subjectDAL.Role);
+                com.Parameters.AddWithValue("@feild9", subjectDAL.Mobile_no);
+                com.Parameters.AddWithValue("@feild10", subjectDAL.Salary);
+                com.Parameters.AddWithValue("@feild11", subjectDAL.Emergency_Contact);
+                com.Parameters.AddWithValue("@feild12", subjectDAL.Department);
                 com.Parameters.AddWithValue("@table", "3");
                 i = com.ExecuteNonQuery();
             }
@@ -105,7 +105,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Deleting an Class  
-        public int StaffDelete(int ID)
+        public int staDelete(int ID)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))

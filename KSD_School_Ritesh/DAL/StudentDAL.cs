@@ -43,32 +43,6 @@ namespace KSD_School_Ritesh.DAL
             }
         }
 
-        public Student GetStudentById(int Id)
-        {
-            Student retrievedStudent = new Student();
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("SP__KSD_GetById_", con);
-                com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@table", "4");
-                com.Parameters.AddWithValue("@Id", Id);
-                SqlDataReader rdr = com.ExecuteReader();
-                while (rdr.Read())
-                {
-
-                    retrievedStudent.Student_id = Convert.ToInt32(rdr["Student_id"]);
-                    retrievedStudent.Name = rdr["Name"].ToString();
-                    retrievedStudent.Father_name = rdr["Father_name"].ToString();
-                    retrievedStudent.Father_contact = rdr["Father_contact"].ToString();
-                    retrievedStudent.Address = rdr["Address"].ToString();
-                    retrievedStudent.Class_id = Convert.ToInt32(rdr["Class_id"].ToString());
-                    retrievedStudent.Emergency_Contact = rdr["Emergency_Contact"].ToString();
-                }
-                return retrievedStudent;
-            }
-        }
-
         //Method for Adding an Student  
         public int Add(Student student)
         {

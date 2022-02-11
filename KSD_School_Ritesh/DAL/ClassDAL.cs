@@ -14,9 +14,9 @@ namespace KSD_School_Ritesh.DAL
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
 
         //Return list of all Students  
-        public List<Class> ClassListAll()
+        public List<Class> claListAll()
         {
-            List<Class> classList = new List<Class>();
+            List<Class> lst = new List<Class>();
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
@@ -26,19 +26,19 @@ namespace KSD_School_Ritesh.DAL
                 SqlDataReader rdr = com.ExecuteReader();
                 while (rdr.Read())
                 {
-                    classList.Add(new Class
+                    lst.Add(new Class
                     {
                         Class_id = Convert.ToInt32(rdr["Class_id"]),
                         Class_name = rdr["Class_name"].ToString(),
                         
                     });
                 }
-                return classList;
+                return lst;
             }
         }
 
         //Method for Adding an Class  
-        public int ClassAdd(Class Class)
+        public int claAdd(Class Class)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -56,7 +56,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Updating Class record  
-        public int ClassUpdate(Class Class)
+        public int claUpdate(Class Class)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -74,7 +74,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Deleting an Class  
-        public int ClassDelete(int ID)
+        public int claDelete(int ID)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))

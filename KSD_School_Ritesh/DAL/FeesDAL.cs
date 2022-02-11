@@ -15,9 +15,9 @@ namespace KSD_School_Ritesh.DAL
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
 
         //Return list of all Students  
-        public List<Fees> FeeListAll()
+        public List<Fees> feListAll()
         {
-            List<Fees> feeList = new List<Fees>();
+            List<Fees> lst = new List<Fees>();
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
@@ -27,23 +27,24 @@ namespace KSD_School_Ritesh.DAL
                 SqlDataReader rdr = com.ExecuteReader();
                 while (rdr.Read())
                 {
-                    feeList.Add(new Fees
+                    lst.Add(new Fees
                     {
+
                         Fee_id = Convert.ToInt32(rdr["Fee_id"]),
-                        FeeType = rdr["FeeType"].ToString(),
+                        Transaction_id = Convert.ToInt32(rdr["Transaction_id"]),
                         Student_id = Convert.ToInt32(rdr["Student_id"]),
-                        SessionId = Convert.ToInt32(rdr["Student_id"]),
                         Amount = rdr["Amount"].ToString(),
                         Duration = rdr["Duration"].ToString(),
-                        comments = rdr["Amount_pending"].ToString(),
+                        Amount_pending = rdr["Amount_pending"].ToString(),
+
                     });
                 }
-                return feeList;
+                return lst;
             }
         }
 
         //Method for Adding an Class  
-        public int FeeAdd(Fees sub)
+        public int feAdd(Fees subjectDAL)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -51,13 +52,12 @@ namespace KSD_School_Ritesh.DAL
                 con.Open();
                 SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@feild1", sub.Fee_id);
-                com.Parameters.AddWithValue("@feild2", sub.FeeType);
-                com.Parameters.AddWithValue("@feild3", sub.Duration);
-                com.Parameters.AddWithValue("@feild4", sub.Student_id);
-                com.Parameters.AddWithValue("@feild5", sub.Amount);
-                com.Parameters.AddWithValue("@feild6", sub.comments);
-                com.Parameters.AddWithValue("@feild7", sub.SessionId);
+                com.Parameters.AddWithValue("@feild1", subjectDAL.Fee_id);
+                com.Parameters.AddWithValue("@feild2", subjectDAL.Transaction_id);
+                com.Parameters.AddWithValue("@feild4", subjectDAL.Student_id);
+                com.Parameters.AddWithValue("@feild5", subjectDAL.Amount);
+                com.Parameters.AddWithValue("@feild3", subjectDAL.Duration);
+                com.Parameters.AddWithValue("@feild6", subjectDAL.Amount_pending);
 
                 com.Parameters.AddWithValue("@table", "2");
                 i = com.ExecuteNonQuery();
@@ -66,7 +66,7 @@ namespace KSD_School_Ritesh.DAL
         }
 
         //Method for Updating Class record  
-        public int FeeUpdate(Fees sub)
+        public int feUpdate(Fees subjectDAL)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))
@@ -74,48 +74,20 @@ namespace KSD_School_Ritesh.DAL
                 con.Open();
                 SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@feild1", sub.Fee_id);
-                com.Parameters.AddWithValue("@feild2", sub.FeeType);
-                com.Parameters.AddWithValue("@feild3", sub.Duration);
-                com.Parameters.AddWithValue("@feild4", sub.Student_id);
-                com.Parameters.AddWithValue("@feild5", sub.Amount);
-                com.Parameters.AddWithValue("@feild6", sub.comments);
-                com.Parameters.AddWithValue("@feild7", sub.SessionId);
+                com.Parameters.AddWithValue("@feild1", subjectDAL.Fee_id);
+                com.Parameters.AddWithValue("@feild2", subjectDAL.Transaction_id);
+                com.Parameters.AddWithValue("@feild4", subjectDAL.Student_id);
+                com.Parameters.AddWithValue("@feild5", subjectDAL.Amount);
+                com.Parameters.AddWithValue("@feild3", subjectDAL.Duration);
+                com.Parameters.AddWithValue("@feild6", subjectDAL.Amount_pending);
                 com.Parameters.AddWithValue("@table", "2");
                 i = com.ExecuteNonQuery();
             }
             return i;
         }
 
-        public List<Fees> GetFeesFromStudentId(int Id)
-        {
-            List<Fees> FeeList = new List<Fees>();
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
-                SqlCommand com = new SqlCommand("SP__KSD_GetFeesFromStudentId_", con);
-                com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@StudentId", Id);
-                SqlDataReader rdr = com.ExecuteReader();
-                while (rdr.Read())
-                {
-                    FeeList.Add(new Fees
-                    {
-                        Fee_id = Convert.ToInt32(rdr["Fee_id"]),
-                        FeeType = rdr["FeeType"].ToString(),
-                        Student_id = Convert.ToInt32(rdr["Student_id"]),
-                        SessionId = Convert.ToInt32(rdr["SessionId"]),
-                        Amount = rdr["FeeAmount"].ToString(),
-                        Duration = rdr["Duration"].ToString(),
-                        comments = rdr["comments"].ToString(),
-                    });
-                }
-                return FeeList;
-            }
-        }
-
         //Method for Deleting an Class  
-        public int FeeDelete(int ID)
+        public int feDelete(int ID)
         {
             int i;
             using (SqlConnection con = new SqlConnection(cs))

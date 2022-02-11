@@ -17,10 +17,11 @@ function loadData() {
                 html += '<td>' + item.Name + '</td>';
                 html += '<td>' + item.Father_name + '</td>';
                 html += '<td>' + item.Father_contact + '</td>';
+                html += '<td>' + item.Student_id + '</td>';
                 html += '<td>' + item.Emergency_Contact + '</td>';
                 html += '<td>' + item.Address + '</td>';
                 html += '<td>' + item.Class_id + '</td>';
-                html += '<td><a href="#" onclick="return getbyID(' + item.Student_id + ')">Edit</a> | <a href="/Home/StudentDetails/' + item.Student_id + '">Details</a> | <a href="#" onclick="Delele(' + item.Student_id + ')">Delete</a></td>';
+                html += '<td><a href="#" onclick="return getbyID(' + item.Student_id + ')">Edit</a> | <a href="#" onclick="Delele(' + item.Student_id + ')">Delete</a></td>';
                 html += '</tr>';
             });
             $('.tbody').html(html);
@@ -72,7 +73,7 @@ function getbyID(EmpID) {
     $('#Class_id').css('border-color', 'lightgrey');
     $.ajax({
         url: "/Home/getbyID/" + EmpID,
-        type: "GET",
+        typr: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
