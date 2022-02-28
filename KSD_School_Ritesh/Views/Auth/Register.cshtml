@@ -1,0 +1,63 @@
+﻿@model KSD_School_Ritesh.Models.login
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/LoginStyle.css" rel="stylesheet" />
+    <title>login</title>
+</head>
+
+<body>
+    @using (Html.BeginForm())
+
+    {
+        <div id="login" class="login-form-container">
+            <header> SIGN UP</header>
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <fieldset>
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "login-username", placeholder = "Username", background = "black" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "login-username", placeholder = "Role", background = "black" } })
+            @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "login-password", placeholder = "Password", type = "password", background = "black" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            
+            <button type="submit" value="Login" id="continue" class="login-submit"></button>
+            <div class="register">
+                <center><h3>@Html.ActionLink("Already a member?", "Login", "Auth")</h3></center>
+            </div>
+        </fieldset>
+        </div>}
+    <script>
+            var vContinue = document.getElementById("continue"),
+                vLogin = document.getElementById("login");
+
+            vContinue.addEventListener("click", function () {
+                document.body.className += ' denied';
+            }, false);
+
+            var pfx = ["webkit", "moz", "MS", "o", ""];
+            function PrefixedEvent(element, type, callback) {
+                for (var p = 0; p < pfx.length; p++) {
+                    if (!pfx[p]) type = type.toLowerCase();
+                    element.addEventListener(pfx[p] + type, callback, false);
+                }
+            }
+
+            PrefixedEvent(vLogin, "AnimationEnd", function () {
+                document.body.className = '';
+            });
+    </script>
+
+</body>
+
+</html>
