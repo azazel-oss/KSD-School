@@ -14,9 +14,10 @@ namespace KSD_School_Ritesh.Controllers
 
         public ActionResult Index()
         {
-
             return View();
         }
+
+        #region DAL Declarations
         StudentDAL studentDal = new StudentDAL();
         ClassDAL classDal = new ClassDAL();
         FeesDAL feesDAL = new FeesDAL();
@@ -29,8 +30,9 @@ namespace KSD_School_Ritesh.Controllers
         SectionDAL sectionObj = new SectionDAL();
         TimetableDAL timetableObj = new TimetableDAL();
 
+        #endregion
 
-
+        #region Student
         public ActionResult student()
         {
             //if (Session["Username"] == null)
@@ -81,18 +83,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult AddSession(Session session)
         {
             return Json(SessionDal.AddSession(session), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        /// 
-
-
-
-
-
+        #region Staff
         public ActionResult staff()
         {
 
@@ -122,11 +116,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult staDelete(int ID)
         {
             return Json(staffDAL.staDelete(ID), JsonRequestBehavior.AllowGet);
-        }
-        ////
-        ///
+        } 
+        #endregion
 
-        ///
+        #region Fees
         public ActionResult fees()
         {
 
@@ -156,12 +149,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult feDelete(int ID)
         {
             return Json(feesDAL.feDelete(ID), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
-        ////
-        ///
-        ////
-        ///
+        #region Class
         public ActionResult _class()
         {
 
@@ -191,11 +182,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult claDelete(int ID)
         {
             return Json(classDal.claDelete(ID), JsonRequestBehavior.AllowGet);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+        } 
+        #endregion
+
+        #region Subjects
         public ActionResult subjects()
         {
 
@@ -225,8 +215,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult subDelete(int ID)
         {
             return Json(subjectDAL.subDelete(ID), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
+        #region Marks
         public ActionResult Marks(Marks mrk)
         {
             dynamic mymodel = new ExpandoObject();
@@ -267,9 +259,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult Deletemarks(int ID)
         {
             return Json(MarksDal.Deletemarks(ID), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
-
+        #region Canteen Bill
         public ActionResult CanteenBill()
         {
             if (Session["Username"] == null)
@@ -290,19 +283,21 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult getBillByID(int ID)
         {
             var canteen = canteenBillDAL.ListAllBills().Find(x => x.Id.Equals(ID));
-            return Json(canteen,JsonRequestBehavior.AllowGet);
+            return Json(canteen, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UpdateBill(CanteenBill parchi)
         {
-            return Json(canteenBillDAL.UpdateBill(parchi),JsonRequestBehavior.AllowGet);
+            return Json(canteenBillDAL.UpdateBill(parchi), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DeleteBill(int ID)
         {
             return Json(canteenBillDAL.DeleteBill(ID), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
+        #region Canteen Inventory
         public ActionResult CanteenInventory()
         {
             //if (Session["Username"] == null)
@@ -335,12 +330,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult DeleteItem(int ID)
         {
             return Json(CanteenInventoryDal.DeleteItem(ID), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
-        /// <summary>
-        /// Section
-        /// </summary>
-        /// <returns></returns>
+        #region Section
         public ActionResult Section()
         {
             return View();
@@ -365,8 +358,10 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult SectionDelete(int ID)
         {
             return Json(sectionObj.DeleteSection(ID), JsonRequestBehavior.AllowGet);
-        }
+        } 
+        #endregion
 
+        #region Timetable
         public ActionResult TimeTable()
         {
             List<SelectListItem> classItems = new List<SelectListItem>();
@@ -431,6 +426,12 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult TimetableDelete(int ID)
         {
             return Json(timetableObj.DeleteTimetable(ID), JsonRequestBehavior.AllowGet);
+        } 
+        #endregion
+
+        public ActionResult ExamTeacher()
+        {
+            return View();
         }
     }
 }
