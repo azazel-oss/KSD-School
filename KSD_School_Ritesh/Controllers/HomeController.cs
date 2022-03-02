@@ -444,8 +444,37 @@ namespace KSD_School_Ritesh.Controllers
             mymodel.SubjectList = subjectDAL.subListAll();
             ViewData["QuestionList"] = questionObj.Listque();
             return View(mymodel);
-        } 
+        }
         #endregion
+        #region Question
+        public ActionResult Question() { 
+        
+            return View();
+        }
+        public JsonResult Listque()
+        {
+            return Json(Quedal.Listque(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Addque(Question que)
+        {
+            return Json(Quedal.Addque(que), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult queGetbyID(int ID)
+        {
+            var clas = Quedal.Listque().Find(x => x.que_id.Equals(ID));
+            return Json(clas, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Updateque(Question que)
+        {
+            return Json(Quedal.Updateque(que), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Deleteque(int ID)
+        {
+            return Json(Quedal.Deleteque(ID), JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+
     }
 }
     

@@ -14,6 +14,7 @@ namespace KSD_School_Ritesh.Models
         public string Address { get; set; }
         public string Class_id { get; set; }
         public string Emergency_Contact { get; set; }
-        public List<Student> GetStudents { get; set; }
+        public string section_id { get; set; }
+
     }
 }

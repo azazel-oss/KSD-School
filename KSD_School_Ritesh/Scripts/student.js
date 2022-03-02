@@ -20,7 +20,8 @@ function loadData() {
                 html += '<td>' + item.Emergency_Contact + '</td>';
                 html += '<td>' + item.Address + '</td>';
                 html += '<td>' + item.Class_id + '</td>';
-                html += '<td><a href="#" onclick="return getbyID(' + item.Student_id + ')">Edit</a> | <a href="/Home/StudentDetails/' + item.Student_id + '">Details</a> | <a href="#" onclick="Delele(' + item.Student_id + ')">Delete</a></td>';
+                html += '<td>' + item.section_id + '</td>';
+                html += '<td><a href="#" onclick="return getbyID(' + item.Student_id + ')">Edit</a> | <a href="/Home/StudentDetails/' + item.Student_id + '">Details</a> | <a href="#" onclick="Delete(' + item.Student_id + ')">Delete</a></td>';
                 html += '</tr>';
             });
             $('.tbody').html(html);
@@ -45,7 +46,8 @@ function Add() {
         Father_contact: $('#Father_contact').val(),
         Emergency_Contact: $('#Emergency_Contact').val(),
         Address: $('#Address').val(),
-        Class_id: $('#Class_id').val()
+        Class_id: $('#Class_id').val(),
+        section_id: $('#section_id').val()
     };
     $.ajax({
         url: "/Home/Add",
@@ -71,6 +73,7 @@ function getbyID(EmpID) {
     $('#Emergency_Contact').css('border-color', 'lightgrey');
     $('#Address').css('border-color', 'lightgrey');
     $('#Class_id').css('border-color', 'lightgrey');
+    $('#section_id').css('border-color', 'lightgrey');
     $.ajax({
         url: "/Home/getbyID/" + EmpID,
         type: "GET",
@@ -83,6 +86,7 @@ function getbyID(EmpID) {
             $('#Father_contact').val(result.Father_contact);
             $('#Emergency_Contact').val(result.Emergency_Contact);
             $('#Adress').val(result.Address);
+            $('#section_id').val(result.section_id);
             $('#Class_id').val(result.Class_id);
 
             $('#myModal').modal('show');
@@ -109,7 +113,8 @@ function Update() {
         Father_contact: $('#Father_contact').val(),
         Emergency_Contact: $('#Emergency_Contact').val(),
         Address: $('#Address').val(),
-        Class_id: $('#Class_id').val()
+        Class_id: $('#Class_id').val(),
+        section_id: $('#section_id').val()
     };
     $.ajax({
         url: "/Home/Update",
@@ -128,6 +133,7 @@ function Update() {
             $('#Emergency_Contact').val("");
             $('#Address').val("");
             $('#Class_id').val("");
+            $('#section_id').val("");
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -137,10 +143,9 @@ function Update() {
 
 //function for deleting employee's record  
 function Delete(ID) {
-    var ans = confirm("Are you sure you want to delete this Record?");
-    if (ans) {
+    
         $.ajax({
-            url: "/Home/Delete/" + ID,
+            url: "/Home/Exam/" ,
             type: "POST",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -151,7 +156,11 @@ function Delete(ID) {
                 alert(errormessage.responseText);
             }
         });
-    }
+    
+}
+
+function Exam() {
+    location.replace("https://www.w3schools.com")
 }
 
 //Function for clearing the textboxes  
@@ -163,6 +172,7 @@ function clearTextBox() {
     $('#Emergency_Contact').val("");
     $('#Address').val("");
     $('#Class_id').val("");
+    $('#section_id').val("");
     $('#btnUpdate').hide();
     $('#btnAdd').show();
     $('#Name').css('border-color', 'lightgrey');
@@ -171,6 +181,7 @@ function clearTextBox() {
     $('#Emergency_Contact').css('border-color', 'lightgrey');
     $('#Address').css('border-color', 'lightgrey');
     $('#Class_id').css('border-color', 'lightgrey');
+    $('#section_id').css('border-color', 'lightgrey');
 
 }
 //Valdidation using jquery  
@@ -216,6 +227,13 @@ function validate() {
     }
     else {
         $('#Class_id').css('border-color', 'lightgrey');
+    }
+    if ($('#section_id').val().trim() == "") {
+        $('#section_id').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#section_id').css('border-color', 'lightgrey');
     }
     return isValid;
 }

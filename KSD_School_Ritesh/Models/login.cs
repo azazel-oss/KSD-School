@@ -13,4 +13,5 @@ namespace KSD_School_Ritesh.Models
         public string Role { get; set; }
 
     }
+    
 }

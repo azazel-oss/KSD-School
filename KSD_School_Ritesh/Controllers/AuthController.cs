@@ -21,6 +21,7 @@ namespace KSD_School_Ritesh.Controllers
         {
             LoginDAL loginDA = new LoginDAL();
             string role = loginDA.LoginCheck(loginda);
+            
             if (role == "admin")
             {
                 Session["Username"] = loginda.Username;
@@ -30,7 +31,7 @@ namespace KSD_School_Ritesh.Controllers
             if (role == "student")
             {
                 Session["Username"] = loginda.Username;
-                return RedirectToAction("student", "home");
+                return RedirectToAction("fees", "home");
             }
             
             if (role == "teacher")
@@ -56,13 +57,37 @@ namespace KSD_School_Ritesh.Controllers
             RegisterDAL loginDA = new RegisterDAL();
 
             int res = loginDA.Register(loginda);
-            if (res == 1)
-            {
-                Response.Redirect("/Auth/Login");
-            }
-           
+            
+                if (res == 1 && loginda.Role=="student")
+                {
+                    Response.Redirect("/Auth/studentdata");
+                }
+
             return View();
 
         }
+
+        public ActionResult studentdata()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult studentdata(Student loginda)
+        {
+            RegisterDAL loginDA = new RegisterDAL();
+
+            int res = loginDA.Addstudent(loginda);
+
+            if (res == 1)
+            {
+                Response.Redirect("/Auth/login");
+            }
+
+            return View();
+        }
+        
     }
 }
