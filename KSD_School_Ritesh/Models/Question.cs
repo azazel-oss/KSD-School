@@ -8,7 +8,8 @@ namespace KSD_School_Ritesh.Models
     public class Question
     {
         public int que_id { get; set; }
-        public int que_no { get; set;}
-        public int que_text { get; set; }
+        public int que_no { get; set; }
+        public string que_text { get; set; }
+        public int exam_id { get; set; }
     }
 }

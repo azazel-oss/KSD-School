@@ -129,6 +129,7 @@
     <Compile Include="DAL\FeesDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\MarksDAL.cs" />
+    <Compile Include="DAL\QuestionDAL.cs" />
     <Compile Include="DAL\RegisterDAL.cs" />
     <Compile Include="DAL\SectionDAL.cs" />
     <Compile Include="DAL\SessionDAL.cs" />
@@ -142,9 +143,14 @@
     <Compile Include="Models\CanteenBill.cs" />
     <Compile Include="Models\CanteenInventory.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamData.cs" />
     <Compile Include="Models\Fees.cs" />
     <Compile Include="Models\login.cs" />
     <Compile Include="Models\Marks.cs" />
+    <Compile Include="Models\Option.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Staff.cs" />
@@ -205,6 +211,7 @@
     <Content Include="Scripts\CanteenBill.js" />
     <Content Include="Scripts\CanteenInventory.js" />
     <Content Include="Scripts\class.js" />
+    <Content Include="Scripts\ExamTeacher.js" />
     <Content Include="Scripts\fees.js" />
     <Content Include="Scripts\HtmlPage1.html" />
     <Content Include="Scripts\JavaScript.js" />
@@ -255,6 +262,7 @@
     <Content Include="Views\Home\CanteenInventory.cshtml" />
     <Content Include="Views\Home\Section.cshtml" />
     <Content Include="Views\Home\TimeTable.cshtml" />
+    <Content Include="Views\Home\ExamTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
