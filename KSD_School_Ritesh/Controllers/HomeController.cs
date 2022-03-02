@@ -29,6 +29,7 @@ namespace KSD_School_Ritesh.Controllers
         CanteenInventoryDAL CanteenInventoryDal = new CanteenInventoryDAL();
         SectionDAL sectionObj = new SectionDAL();
         TimetableDAL timetableObj = new TimetableDAL();
+        QuestionDAL questionObj = new QuestionDAL();
 
         #endregion
 
@@ -426,13 +427,25 @@ namespace KSD_School_Ritesh.Controllers
         public JsonResult TimetableDelete(int ID)
         {
             return Json(timetableObj.DeleteTimetable(ID), JsonRequestBehavior.AllowGet);
-        } 
+        }
         #endregion
+
+        #region Exam
+        public JsonResult GetExamIdFromData(ExamData exam)
+        {
+            return Json(questionObj.GetExamIdFromData(exam), JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult ExamTeacher()
         {
-            return View();
-        }
+            dynamic mymodel = new ExpandoObject();
+            mymodel.SessionList = SessionDal.ListAllSession();
+            mymodel.ClassList = classDal.claListAll();
+            mymodel.SubjectList = subjectDAL.subListAll();
+            ViewData["QuestionList"] = questionObj.Listque();
+            return View(mymodel);
+        } 
+        #endregion
     }
 }
     
