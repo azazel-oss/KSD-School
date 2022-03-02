@@ -6,33 +6,52 @@
 
 <div class="container">
     <h2>Students Record</h2>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Add New Student</button><br /><br />
-    <table class="table table-dark ">
-        <thead>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Father Name
-                </th>
-                <th>
-                    Father Contact
-                </th>
-                <th>
-                    Emergency Contact
-                </th>
-                <th>
-                    Address
-                </th>
-                <th>
-                    Class Name
-                </th>
-            </tr>
+    <table class="table table ">
+        <thead><tr>
+                   <th>
+                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Add New Student</button>
+                       <br />
+                       <br />
+                   </th><th>
+
+
+    <a href="/Home/fees/"><button type="button" class="btn btn-primary" id="Exam"  >Attempt Exam</button></a>
+    <br />
+    <br />
+</th>
+</tr>
+            
         </thead>
-        <tbody class="tbody">
-        </tbody>
-    </table>
+        </table>
+        <table class="table table-dark ">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Father Name
+                    </th>
+                    <th>
+                        Father Contact
+                    </th>
+                    <th>
+                        Emergency Contact
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Class Name
+                    </th>
+                    <th>
+                        section Id
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+            </tbody>
+        </table>
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -44,9 +63,9 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                            <label for="Student_id">ID</label>
-                            <input type="text" class="form-control" id="Student_id" placeholder="Id" hidden/>
-                        </div>
+                        <label for="Student_id">ID</label>
+                        <input type="text" class="form-control" id="Student_id" placeholder="Id" hidden />
+                    </div>
                     <div class="form-group">
                         <label for="Name">Name</label>
                         <input type="text" class="form-control" id="Name" placeholder="Name" />
@@ -70,6 +89,10 @@
                     <div class="form-group">
                         <label for="Class_id">Class ID</label>
                         <input type="text" class="form-control" id="Class_id" placeholder="Class id" />
+                    </div>
+                    <div class="form-group">
+                        <label for="section_id">Class ID</label>
+                        <input type="text" class="form-control" id="section_id" placeholder="section id" />
                     </div>
                 </form>
             </div>

@@ -126,6 +126,7 @@
     <Compile Include="DAL\CanteenBillDAL.cs" />
     <Compile Include="DAL\CanteenInventoryDAL.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
+    <Compile Include="DAL\ExamDAL.cs" />
     <Compile Include="DAL\FeesDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\MarksDAL.cs" />
@@ -231,6 +232,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Marks.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Question.js" />
     <Content Include="Scripts\Section.js" />
     <Content Include="Scripts\staff.js" />
     <Content Include="Scripts\student.js" />
@@ -262,7 +264,6 @@
     <Content Include="Views\Home\CanteenInventory.cshtml" />
     <Content Include="Views\Home\Section.cshtml" />
     <Content Include="Views\Home\TimeTable.cshtml" />
-    <Content Include="Views\Home\ExamTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

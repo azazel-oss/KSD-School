@@ -13,6 +13,24 @@ namespace KSD_School_Ritesh.DAL
     {//declare connection string  
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
 
+        public int Addque(Question que)
+        {
+
+            int i;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("ksd_edit", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@feild1", que.que_id);
+                com.Parameters.AddWithValue("@feild2", que.que_no);
+                com.Parameters.AddWithValue("@feild3", que.que_text);
+                com.Parameters.AddWithValue("@feild3", que.exam_id);
+                com.Parameters.AddWithValue("@table", "4");
+                i = com.ExecuteNonQuery();
+            }
+            return i;
+        }
         public List<Question> Listque()
         {
             List<Question> lst = new List<Question>();
@@ -37,6 +55,39 @@ namespace KSD_School_Ritesh.DAL
                 return lst;
             }
         }
+        public int Updateque(Question que)
+        {
+
+            int i;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("ksd_edit", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@feild2", que.que_no);
+                com.Parameters.AddWithValue("@feild3", que.que_text);
+                com.Parameters.AddWithValue("@feild3", que.exam_id);
+                com.Parameters.AddWithValue("@table", "4");
+                i = com.ExecuteNonQuery();
+            }
+            return i;
+        }
+
+        public int Deleteque(int ID)
+        {
+            int i;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("ksd_del", con);
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@feild1", ID);
+                com.Parameters.AddWithValue("@table", 4);
+                i = com.ExecuteNonQuery();
+            }
+            return i;
+        }
+
         public int GetExamIdFromData(ExamData exam)
         {
             int i;

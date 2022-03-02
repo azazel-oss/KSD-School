@@ -37,6 +37,7 @@ namespace KSD_School_Ritesh.DAL
                         Address = rdr["Address"].ToString(),
                         Class_id = rdr["class_name"].ToString(),
                         Emergency_Contact = rdr["Emergency_Contact"].ToString(),
+                        section_id = rdr["section_id"].ToString(),
                     });
                 }
                 return lst;
@@ -62,7 +63,8 @@ namespace KSD_School_Ritesh.DAL
                 com.Parameters.AddWithValue("@feild4", student.Father_contact);
                 com.Parameters.AddWithValue("@feild5", student.Address);
                 com.Parameters.AddWithValue("@feild6", student.Class_id);
-                com.Parameters.AddWithValue("@feild7", student.Emergency_Contact);
+                com.Parameters.AddWithValue("@feild7", student.section_id);
+                com.Parameters.AddWithValue("@feild8", student.Emergency_Contact);
                 com.Parameters.AddWithValue("@table", "4");
                 i = com.ExecuteNonQuery();
             }
@@ -84,7 +86,8 @@ namespace KSD_School_Ritesh.DAL
                 com.Parameters.AddWithValue("@feild4", student.Father_contact);
                 com.Parameters.AddWithValue("@feild5", student.Address);
                 com.Parameters.AddWithValue("@feild6", student.Class_id);
-                com.Parameters.AddWithValue("@feild7", student.Emergency_Contact);
+                com.Parameters.AddWithValue("@feild7", student.section_id);
+                com.Parameters.AddWithValue("@feild8", student.Emergency_Contact);
                 com.Parameters.AddWithValue("@table", "4");
                 i = com.ExecuteNonQuery();
             }
@@ -112,6 +115,7 @@ namespace KSD_School_Ritesh.DAL
                     retrievedStudent.Address = rdr["Address"].ToString();
                     retrievedStudent.Class_id = rdr["Class_id"].ToString();
                     retrievedStudent.Emergency_Contact = rdr["Emergency_Contact"].ToString();
+                    retrievedStudent.section_id = rdr["section_id"].ToString();
                 }
                 return retrievedStudent;
             }
