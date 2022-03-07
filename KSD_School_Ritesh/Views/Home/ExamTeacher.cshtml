@@ -4,7 +4,6 @@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/ExamTeacher.js"></script>
 <script type="text/javascript">
-    const questionList = @Html.Raw(Json.Encode(ViewData["QuestionList"]));
     let exam_id = 0;
 </script>
 
@@ -18,12 +17,22 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="code">Question No</label>
+                        <label for="question_no">Question No</label>
                         <input type="text" class="form-control" id="question_no" placeholder="Question number" />
                     </div>
                     <div class="form-group">
-                        <label for="code">Question Text</label>
+                        <label for="question_text">Question Text</label>
                         <input type="text" class="form-control" id="question_text" placeholder="Write question" />
+                    </div>
+                    <div class="form-group">
+                        <label for="correct_option">Correct option</label>
+                        <input type="text" class="form-control" id="correct_option" placeholder="Correct option" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Incorrect options</label>
+                        <input type="text" class="form-control" id="incorrect1" placeholder="Incorrect option 1" />
+                        <input type="text" class="form-control" id="incorrect2" placeholder="Incorrect option 2" />
+                        <input type="text" class="form-control" id="incorrect3" placeholder="Incorrect option 3" />
                     </div>
                 </form>
             </div>
@@ -38,10 +47,11 @@
 </div>
 
 <div class="container">
+    <h2>Question Fill</h2>
 
     <label for="session_type">Session:</label>
     <select id="session_type" class="form-select" aria-label="Default select example">
-        <option selected>Select session</option>
+        <option selected disabled hidden>Select session</option>
         @foreach (var session in Model.SessionList)
         {
             <option value="@session.SessionId">@session.SessionName</option>
@@ -49,7 +59,7 @@
     </select>
     <label for="class_type">Class:</label>
     <select id="class_type" class="form-select" aria-label="Default select example">
-        <option selected>Select class</option>
+        <option selected disabled hidden>Select class</option>
         @foreach (var _class in Model.ClassList)
         {
             <option value="@_class.Class_id">@_class.Class_name</option>
@@ -57,30 +67,19 @@
     </select>
     <label for="subject_type">Subject:</label>
     <select id="subject_type" class="form-select" aria-label="Default select example">
-        <option selected>Select subject</option>
+        <option selected disabled hidden>Select subject</option>
         @foreach (var subject in Model.SubjectList)
         {
             <option value="@subject.Subject_id">@subject.Subject_name</option>
         }
     </select>
+    <br />
 </div>
 
 <div class="container">
-    <h2>Question Fill</h2>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">New question</button><br /><br />
-    <table class="table table-dark ">
-        <thead>
-            <tr>
-                <th>
-                    Question No.
-                </th>
-                <th>
-                    Question Text
-                </th>
-            </tr>
-        </thead>
-        <tbody class="tbody"></tbody>
-    </table>
+    <div id="btn-text" class="text-danger">* Add appropriate exam details to enable the add button</div>
+    <button type="button" id="new-question__btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();" disabled>New question</button><br /><br />
+    <div id="question-details"></div>
 </div>
 
 

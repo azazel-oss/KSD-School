@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using KSD_School_Ritesh.Models;
 using KSD_School_Ritesh.DAL;
 using System.Dynamic;
+using Newtonsoft.Json;
 
 namespace KSD_School_Ritesh.Controllers
 {
@@ -433,7 +434,8 @@ namespace KSD_School_Ritesh.Controllers
         #region Exam
         public JsonResult GetExamIdFromData(ExamData exam)
         {
-            return Json(questionObj.GetExamIdFromData(exam), JsonRequestBehavior.AllowGet);
+            var result = Json(questionObj.GetExamIdFromData(exam), JsonRequestBehavior.AllowGet);
+            return result;
         }
 
         public ActionResult ExamTeacher()
@@ -449,16 +451,22 @@ namespace KSD_School_Ritesh.Controllers
        
         #region Question
         public ActionResult Question() { 
-        
             return View();
+        }
+        public JsonResult AddQuestion(string q, string o)
+        {
+            Question question = JsonConvert.DeserializeObject<Question>(q);
+            List<Option> options = JsonConvert.DeserializeObject<List<Option>>(o);
+            return Json(questionObj.AddQuestion(question, options), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetQuestionsToDisplay(int examId)
+        {
+            return Json(questionObj.GetQuestionsFromExamId(examId), JsonRequestBehavior.AllowGet);
         }
         public JsonResult Listque()
         {
             return Json(questionObj.Listque(), JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult Addque(Question que)
-        {
-            return Json(questionObj.Addque(que), JsonRequestBehavior.AllowGet);
         }
         public JsonResult queGetbyID(int ID)
         {

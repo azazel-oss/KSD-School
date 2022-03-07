@@ -151,6 +151,7 @@
     <Compile Include="Models\Marks.cs" />
     <Compile Include="Models\Option.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\QuestionDisplay.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Section.cs" />
     <Compile Include="Models\Session.cs" />
@@ -264,6 +265,8 @@
     <Content Include="Views\Home\CanteenInventory.cshtml" />
     <Content Include="Views\Home\Section.cshtml" />
     <Content Include="Views\Home\TimeTable.cshtml" />
+    <Content Include="Views\Home\ExamTeacher.cshtml" />
+    <Content Include="Views\Home\Question.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
