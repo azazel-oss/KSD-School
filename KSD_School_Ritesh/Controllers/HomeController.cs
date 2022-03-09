@@ -31,6 +31,7 @@ namespace KSD_School_Ritesh.Controllers
         SectionDAL sectionObj = new SectionDAL();
         TimetableDAL timetableObj = new TimetableDAL();
         QuestionDAL questionObj = new QuestionDAL();
+        ExamDAL examObj = new ExamDAL();
 
         #endregion
 
@@ -432,6 +433,12 @@ namespace KSD_School_Ritesh.Controllers
         #endregion
 
         #region Exam
+
+        public JsonResult AddExamTerm(Exam exam)
+        {
+            var result = Json(examObj.AddExamTerm(exam), JsonRequestBehavior.AllowGet);
+            return result;
+        }
         public JsonResult GetExamIdFromData(ExamData exam)
         {
             var result = Json(questionObj.GetExamIdFromData(exam), JsonRequestBehavior.AllowGet);

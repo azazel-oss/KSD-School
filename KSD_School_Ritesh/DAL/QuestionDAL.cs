@@ -90,7 +90,6 @@ namespace KSD_School_Ritesh.DAL
             }
             return i;
         }
-
         public int Deleteque(int ID)
         {
             int i;
@@ -105,7 +104,6 @@ namespace KSD_School_Ritesh.DAL
             }
             return i;
         }
-
         public List<QuestionDisplay> GetQuestionsFromExamId(int examId)
         {
             List<QuestionDisplay> questionDisplays = new List<QuestionDisplay>();
@@ -174,7 +172,6 @@ namespace KSD_School_Ritesh.DAL
             }
             return questionDisplays;
         }
-
         public int GetExamIdFromData(ExamData exam)
         {
             int i;

@@ -11,6 +11,5 @@ namespace KSD_School_Ritesh.Models
         public int session_id { get; set; }
         public int subj_id { get; set; }
         public int class_id { get; set; }
-        public int section_id { get; set; }
     }
 }
