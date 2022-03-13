@@ -267,6 +267,7 @@
     <Content Include="Views\Home\TimeTable.cshtml" />
     <Content Include="Views\Home\ExamTeacher.cshtml" />
     <Content Include="Views\Home\Question.cshtml" />
+    <Content Include="Views\Auth\studentdata.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
