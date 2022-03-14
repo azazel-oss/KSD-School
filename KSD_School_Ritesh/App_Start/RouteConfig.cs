@@ -16,7 +16,7 @@ namespace KSD_School_Ritesh
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "student", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "question", id = UrlParameter.Optional }
             );
         }
     }

@@ -11,5 +11,6 @@ namespace KSD_School_Ritesh.Models
         public int que_no { get; set; }
         public string que_text { get; set; }
         public int exam_id { get; set; }
+        public string Option { get; set; }
     }
 }

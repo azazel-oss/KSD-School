@@ -2,6 +2,20 @@
 $(document).ready(function () {
     loadData();
 });
+function splitdata(item) {
+    let option = item;
+
+    var fields = option.split(',');
+
+    var option1 = fields[0];
+    var option2 = fields[1];
+    var option3 = fields[2];
+    var option4 = fields[3];
+
+    return fields;
+
+}
+
 
 //Load Data function  
 function loadData() {
@@ -13,12 +27,27 @@ function loadData() {
         success: function (result) {
             var html = '';
             $.each(result, function (key, item) {
+                
                 html += '<tr>';
                 html += '<td style="display: none;">' + item.que_id + '</td>';
                 html += '<td>' + item.que_no + '</td>';
-                html += '<td>' + item.exam_id + '</td>';
+                html += '<td style="display:none;">' + item.exam_id + '</td>';
                 html += '<td>' + item.que_text + '</td>';
-                html += '<td><a href="#" onclick="return stagetbyID(' + item.que_id + ')">Edit</a> | <a href="#" onclick="staDelete(' + item.que_id + ')">Delete</a></td>';
+                //html += '<td>' + item.Option + '</td>';
+                html += '<tr>';
+                html += '<td>' + splitdata(item.Option)[0]; + '</td>';
+                html += '</tr>';
+                html += '<tr>';
+                html += '<td>' + splitdata(item.Option)[1]; + '</td>';
+                html += '</tr>';
+                html += '<tr>';
+                html += '<td>' + splitdata(item.Option)[2]; + '</td>';
+                html += '</tr>';
+                html += '<tr>';
+                html += '<td>' + splitdata(item.Option)[3]; + '</td>';
+                html += '</tr>';
+                html += '<tr>';
+                html += '</tr>';
                 html += '</tr>';
             });
             $('.tbody').html(html);
@@ -40,6 +69,7 @@ function Add() {
         que_no: $('#que_no').val(),
         exam_id: $('#exam_id').val(),
         que_text: $('#que_text').val(),
+        Option: $('#Option').val(),
        
     };
     $.ajax({
@@ -60,12 +90,12 @@ function Add() {
 }
 
 //Function for getting the Data Based upon Employee ID  
-function stagetbyID(EmpID) {
+function queGetbyID(EmpID) {
     $('#que_no').css('border-color', 'lightgrey');
     $('#exam_id').css('border-color', 'lightgrey');
     $('#que_text').css('border-color', 'lightgrey');
     $.ajax({
-        url: "/Home/stagetbyID/" + EmpID,
+        url: "/Home/queGetbyID/" + EmpID,
         type: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -74,6 +104,7 @@ function stagetbyID(EmpID) {
             $('#que_no').val(result.que_no);
             $('#exam_id').val(result.exam_id);
             $('#que_text').val(result.que_text);
+            $('#Option').val(result.Option);
            
 
             $('#myModal').modal('show');
@@ -120,7 +151,7 @@ function Update() {
 }
 
 //function for deleting employee's record  
-function staDelete(ID) {
+function Deleteque(ID) {
     var ans = confirm("Are you sure you want to delete this Record?");
     if (ans) {
         $.ajax({

@@ -1,12 +1,24 @@
 ﻿<script src="~/Scripts/jquery-3.6.0.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<script src="~/Scripts/class.js"></script>
+<script src="~/Scripts/Question.js"></script>
 
 <div class="container">
     <h2>Class Record</h2>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Add New Class </button><br /><br />
-    <table class="table table-dark ">
+    <h2>
+
+        <table>
+
+            <tr>
+                <td>@Session["Username"]</td>
+
+            </tr>
+        </table>
+    </h2>
+
+    <table class="table ">
+        <col width="10">
+        <col width="550">
         <thead>
             <tr>
                 <th style="display:none;">
@@ -15,16 +27,20 @@
                 <th>
                     que_no
                 </th>
+                <th style="display:none;">
+                    Exam_id
+                </th>
                 <th>
-                        que_text
-                    </th>
-                    <th>
-                        Exam_id
-                    </th>
-                    @*<th>
+                    que_text
+                </th>
+                @*<th>
+                        Option
+                    </th>*@
+
+                @*<th>
                         Emergency Contact
                     </th>*@
-                    @*<th>
+                @*<th>
                         Address
                     </th>
                     <th>
@@ -35,6 +51,8 @@
         <tbody class="tbody">
         </tbody>
     </table>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Submit </button><br /><br />
+
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,21 +65,21 @@
                 <form>
                     <div class="form-group">
                         <label for="que_id" style="display:none" ;>ID</label>
-                        <input type="text" class="form-control" id="que_id" placeholder="Id" disabled="disabled" />
+                        <input type="text" class="form-control" id="que_id" placeholder="Id" disabled="disabled" style="display: none;" />
                     </div>
                     <div class="form-group">
-                        <label for="que_no">Class Name</label>
+                        <label for="que_no">Question Number</label>
                         <input type="text" class="form-control" id="que_no" placeholder="Class Name" />
                     </div>
                     <div class="form-group">
-                            <label for="que_text">Father Name</label>
-                            <input type="text" class="form-control" id="que_text" placeholder="name" />
-                        </div>
-                        <div class="form-group">
-                            <label for="exam_id">Father Contact</label>
-                            <input type="text" class="form-control" id="exam_id" placeholder="contact no." />
-                        </div>
-                        @*<div class="form-group">
+                        <label for="que_text">Question</label>
+                        <input type="text" class="form-control" id="que_text" placeholder="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exam_id">Exam Id </label>
+                        <input type="text" class="form-control" id="exam_id" placeholder="contact no." />
+                    </div>
+                    @*<div class="form-group">
                             <label for="Emergency_Contact">Emergency Contact</label>
                             <input type="text" class="form-control" id="Emergency_Contact" placeholder="contact no." />
                         </div>

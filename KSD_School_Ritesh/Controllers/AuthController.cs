@@ -31,7 +31,7 @@ namespace KSD_School_Ritesh.Controllers
             if (role == "student")
             {
                 Session["Username"] = loginda.Username;
-                return RedirectToAction("fees", "home");
+                return RedirectToAction("student", "home");
             }
             
             if (role == "teacher")
