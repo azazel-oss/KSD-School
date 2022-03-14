@@ -8,7 +8,6 @@
 </script>
 <body class="container p-3">
 
-
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,30 +110,40 @@
                 </div>
             </div>
         </div>
-        <label for="session_type">Session:</label>
-        <select id="session_type" class="form-select" aria-label="Default select example">
-            <option selected disabled hidden>Select session</option>
-            @foreach (var session in Model.SessionList)
-            {
-                <option value="@session.SessionId">@session.SessionName</option>
-            }
-        </select>
-        <label for="class_type">Class:</label>
-        <select id="class_type" class="form-select" aria-label="Default select example">
-            <option selected disabled hidden>Select class</option>
-            @foreach (var _class in Model.ClassList)
-            {
-                <option value="@_class.Class_id">@_class.Class_name</option>
-            }
-        </select>
-        <label for="subject_type">Subject:</label>
-        <select id="subject_type" class="form-select" aria-label="Default select example">
-            <option selected disabled hidden>Select subject</option>
-            @foreach (var subject in Model.SubjectList)
-            {
-                <option value="@subject.Subject_id">@subject.Subject_name</option>
-            }
-        </select>
+
+        <div class="row">
+            <div class="col-4">
+                <label for="session_type">Session:</label>
+                <select id="session_type" class="form-select" aria-label="Default select example">
+                    <option selected disabled hidden>Select session</option>
+                    @foreach (var session in Model.SessionList)
+                    {
+                        <option value="@session.SessionId">@session.SessionName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="class_type">Class:</label>
+                <select id="class_type" class="form-select" aria-label="Default select example">
+                    <option selected disabled hidden>Select class</option>
+                    @foreach (var _class in Model.ClassList)
+                    {
+                        <option value="@_class.Class_id">@_class.Class_name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="subject_type">Subject:</label>
+                <select id="subject_type" class="form-select" aria-label="Default select example">
+                    <option selected disabled hidden>Select subject</option>
+                    @foreach (var subject in Model.SubjectList)
+                    {
+                        <option value="@subject.Subject_id">@subject.Subject_name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
         <br />
     </div>
 
@@ -143,6 +152,5 @@
         <button type="button" id="new-question__btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();" disabled>New question</button><br /><br />
         <div id="question-details"></div>
     </div>
-
 
 </body>

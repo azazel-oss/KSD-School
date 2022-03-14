@@ -56,9 +56,9 @@ function populateQuestions() {
                         for (const [index, question] of result.entries()) {
                             html += '<div class="card mb-3"><div class="card-body">';
                             html += `<h5 class="card-title">${index + 1}. ${question.Question.que_text}</h5>`;
-                            html += `<div class="row"><div class="col-3 text-success">${question.CorrectOption.option_}✓</div>`
+                            html += `<div class="row"><div class="col-3 text-success">🟢 ${question.CorrectOption.option_.toUpperCase()}  ✓</div>`
                             for (option of question.IncorrectOptions) {
-                                html += `<div class="col-3 text-danger">${option.option_}✖</div>`
+                                html += `<div class="col-3 text-danger">🔴 ${option.option_.toUpperCase()}  ✖</div>`
                             }
                             html += '</div></div></div>';
                         }
