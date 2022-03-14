@@ -471,6 +471,23 @@ namespace KSD_School_Ritesh.Controllers
         {
             return Json(questionObj.GetQuestionsFromExamId(examId), JsonRequestBehavior.AllowGet);
         }
+        //public ActionResult Question(login log) {
+        //    //LoginDAL loginDA = new LoginDAL();
+        //    //string role = loginDA.LoginCheck(log);
+
+        //    //if (role == "student")
+        //    //{
+        //    //    ViewData["name"] = log.Username;
+        //    //    Session["Username"] = log.Username;
+        //    //    
+        //    //}
+        //    //else
+        //    //{
+        //    //    return RedirectToAction("login", "auth");
+
+        //    //}
+        //    return View();
+        //}
         public JsonResult Listque()
         {
             return Json(questionObj.Listque(), JsonRequestBehavior.AllowGet);
@@ -480,10 +497,10 @@ namespace KSD_School_Ritesh.Controllers
             var clas = questionObj.Listque().Find(x => x.que_id.Equals(ID));
             return Json(clas, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Updateque(Question que)
-        {
-            return Json(questionObj.Updateque(que), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult Updateque(Question que)
+        //{
+        //    return Json(questionObj.Updateque(que), JsonRequestBehavior.AllowGet);
+        //}
         public JsonResult Deleteque(int ID)
         {
             return Json(questionObj.Deleteque(ID), JsonRequestBehavior.AllowGet);
