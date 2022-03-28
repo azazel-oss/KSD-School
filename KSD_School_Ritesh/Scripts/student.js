@@ -85,7 +85,7 @@ function getbyID(EmpID) {
             $('#Father_name').val(result.Father_name);
             $('#Father_contact').val(result.Father_contact);
             $('#Emergency_Contact').val(result.Emergency_Contact);
-            $('#Adress').val(result.Address);
+            $('#Address').val(result.Address);
             $('#section_id').val(result.section_id);
             $('#Class_id').val(result.Class_id);
 
@@ -143,9 +143,10 @@ function Update() {
 
 //function for deleting employee's record  
 function Delete(ID) {
-    
+    var ans = confirm("Are you sure you want to delete this Record?");
+    if (ans) {
         $.ajax({
-            url: "/Home/Exam/" ,
+            url: "/Home/Delete/" + ID,
             type: "POST",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -156,11 +157,7 @@ function Delete(ID) {
                 alert(errormessage.responseText);
             }
         });
-    
-}
-
-function Exam() {
-    location.replace("https://www.w3schools.com")
+    }
 }
 
 //Function for clearing the textboxes  

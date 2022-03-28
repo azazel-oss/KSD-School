@@ -19,13 +19,15 @@ namespace KSD_School_Ritesh.DAL
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
-                SqlCommand com = new SqlCommand("Marksadd", con);
+                SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@student_Id", mark.Student_Id);
                 com.Parameters.AddWithValue("@session_Id", mark.Session_Id);
                 com.Parameters.AddWithValue("@subject_Id", mark.Subject_Id);
                 com.Parameters.AddWithValue("@marks", mark.marks);
-               
+                com.Parameters.AddWithValue("@table", "11");
+
+
                 i = com.ExecuteNonQuery();
             }
             return i;
@@ -39,8 +41,10 @@ namespace KSD_School_Ritesh.DAL
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
-                SqlCommand com = new SqlCommand("Markshow", con);
+                SqlCommand com = new SqlCommand("ksd_show", con);
                 com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@table", "11");
+
                 SqlDataReader rdr = com.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -96,10 +100,12 @@ namespace KSD_School_Ritesh.DAL
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
-                SqlCommand com = new SqlCommand("Markupdate", con);
+                SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@id", mark.id);
                 com.Parameters.AddWithValue("@marks", mark.marks);
+                com.Parameters.AddWithValue("@table", "11");
+
 
                 i = com.ExecuteNonQuery();
             }
@@ -111,8 +117,10 @@ namespace KSD_School_Ritesh.DAL
             using (SqlConnection con = new SqlConnection(cs))
             {
                 con.Open();
-                SqlCommand com = new SqlCommand("Markdel", con);
+                SqlCommand com = new SqlCommand("ksd_del", con);
                 com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@table", "11");
+
                 com.Parameters.AddWithValue("@id", ID);
                 i = com.ExecuteNonQuery();
             }

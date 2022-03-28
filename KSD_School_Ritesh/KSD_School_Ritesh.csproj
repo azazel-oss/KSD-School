@@ -178,6 +178,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\exam.css" />
     <Content Include="Content\LoginStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="favicon.png" />

@@ -104,16 +104,17 @@ body {
 
 .login-form-container button {
     outline: 2px;
-    font-size: 8px;
+    font-size: 14px;
     letter-spacing: 0.1em;
     background-color: #FC7148;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 50px;
     width: 200px;
     padding: 1.2em 0;
-    margin: 4em auto;
+    margin: 2em auto;
     display: block;
+    text-align: center;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
 }

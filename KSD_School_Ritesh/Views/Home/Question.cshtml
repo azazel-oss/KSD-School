@@ -3,104 +3,129 @@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script src="~/Scripts/Question.js"></script>
 
-<div class="container">
-    <h2>Class Record</h2>
-    <h2>
+@{ 
+    var totalque = 10;
+}
 
-        <table>
 
-            <tr>
-                <td>@Session["Username"]</td>
 
-            </tr>
-        </table>
-    </h2>
-
-    <table class="table ">
-        <col width="10">
-        <col width="550">
-        <thead>
-            <tr>
-                <th style="display:none;">
-                    que_id
-                </th>
-                <th>
-                    que_no
-                </th>
-                <th style="display:none;">
-                    Exam_id
-                </th>
-                <th>
-                    que_text
-                </th>
-                @*<th>
-                        Option
-                    </th>*@
-
-                @*<th>
-                        Emergency Contact
-                    </th>*@
-                @*<th>
-                        Address
-                    </th>
-                    <th>
-                        Class ID
-                    </th>*@
-            </tr>
-        </thead>
-        <tbody class="tbody">
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Submit </button><br /><br />
-
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-bs-dismiss="modal">×</button>
-                <h4 class="modal-title" id="myModalLabel">Add Class </h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="que_id" style="display:none" ;>ID</label>
-                        <input type="text" class="form-control" id="que_id" placeholder="Id" disabled="disabled" style="display: none;" />
+        <div class="container">
+            <h2>Class Record</h2>
+            <h2>
+                <tr>
+                    <td>@Session["Username"]</td>
+                </tr>
+                <div class="row">
+                    <div class="col-md-10">
+                        <table>
+                            <tr>
+                                <td><a href="javascript:void(0);" class="btn btn-primary" onclick="saveBackward(this);"><< Previous</a></td>
+                                <td><a href=" @Url.Action("Question", "home", new { @token = Session["TOKEN"] }) "></a></td>
+                                @for (int i = 0; i < totalque; i++)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Question", "home", new {  @qno = (i + 1) })" class="btn btn-outline-primary" name="radio" id="qno" for="btnradio">@(i+1)</a>
+                                    </td>
+                                }
+                                <td><a href="javascript:void(0);" class="btn btn-primary" onclick="saveBackward(this);"> Next >></a></td>
+                                <td><a href=" @Url.Action("Question", "home", new { @token = Session["TOKEN"] }) "></a></td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="form-group">
-                        <label for="que_no">Question Number</label>
-                        <input type="text" class="form-control" id="que_no" placeholder="Class Name" />
+                </div>
+
+            </h2>
+
+            <table class="table ">
+                <col width="10">
+                <col width="550">
+                <thead>
+                    <tr>
+                        <th style="display:none;">
+                            que_id
+                        </th>
+                        <th>
+                            que_no
+                        </th>
+                        <th style="display:none;">
+                            Exam_id
+                        </th>
+                        <th>
+                            que_text
+                        </th>
+
+
+                        @*<th>
+                Emergency Contact
+            </th>*@
+                        @*<th>
+                Address
+            </th>
+            <th>
+                Class ID
+            </th>*@
+                    </tr>
+                    
+                    
+                </thead>
+                <tbody class="tbody">
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Submit </button><br /><br />
+
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Add Class </h4>
                     </div>
-                    <div class="form-group">
-                        <label for="que_text">Question</label>
-                        <input type="text" class="form-control" id="que_text" placeholder="name" />
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="que_id" style="display:none" ;>ID</label>
+                                <input type="text" class="form-control" id="que_id" placeholder="Id" disabled="disabled" style="display: none;" />
+                            </div>
+                            <div class="form-group">
+                                <label for="que_no">Question Number</label>
+                                <input type="text" class="form-control" id="que_no" placeholder="Class Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="que_text">Question</label>
+                                <input type="text" class="form-control" id="que_text" placeholder="name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exam_id">Exam Id </label>
+                                <input type="text" class="form-control" id="exam_id" placeholder="contact no." />
+                            </div>
+                            @*<div class="form-group">
+                                <label for="Emergency_Contact">Emergency Contact</label>
+                                <input type="text" class="form-control" id="Emergency_Contact" placeholder="contact no." />
+                            </div>
+                            <div class="form-group">
+                                <label for="Address">Address</label>
+                                <input type="text" class="form-control" id="Address" placeholder="Address" />
+                            </div>
+                            <div class="form-group">
+                                <label for="Class_id">Class ID</label>
+                                <input type="text" class="form-control" id="Class_id" placeholder="Class id" />
+                            </div>*@
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="exam_id">Exam Id </label>
-                        <input type="text" class="form-control" id="exam_id" placeholder="contact no." />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                        <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
                     </div>
-                    @*<div class="form-group">
-                            <label for="Emergency_Contact">Emergency Contact</label>
-                            <input type="text" class="form-control" id="Emergency_Contact" placeholder="contact no." />
-                        </div>
-                        <div class="form-group">
-                            <label for="Address">Address</label>
-                            <input type="text" class="form-control" id="Address" placeholder="Address" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Class_id">Class ID</label>
-                            <input type="text" class="form-control" id="Class_id" placeholder="Class id" />
-                        </div>*@
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
-                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
-                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+ 
+
+
+
+
 
 
 

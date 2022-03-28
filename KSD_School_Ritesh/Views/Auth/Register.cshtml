@@ -31,7 +31,7 @@
             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "login-password", placeholder = "Password", type = "password", background = "black" } })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             
-            <button type="submit" value="Login" id="continue" class="login-submit"></button>
+            <button type="submit" value="Login" id="continue" class="login-submit">Register</button>
             <div class="register">
                 <center><h3>@Html.ActionLink("Already a member?", "Login", "Auth")</h3></center>
             </div>

@@ -69,9 +69,12 @@ namespace KSD_School_Ritesh.DAL
                         que_no = Convert.ToInt32(rdr["que_no"]),
                         exam_id = Convert.ToInt32(rdr["exam_id"]),
                         que_text = rdr["que_text"].ToString(),
-                        Option = rdr["options"].ToString(),
+                        Option = (rdr["options"].ToString()).Split(','),
+                        
 
                     });
+                    
+
                 }
                 return lst;
             }
@@ -156,6 +159,7 @@ namespace KSD_School_Ritesh.DAL
                 foreach (Question question in questionList)
                 {
                     con.Open();
+                    int i = 0;
                     QuestionDisplay questionDisplay = new QuestionDisplay();
                     SqlCommand com = new SqlCommand("SP__KSD_GetOptionsFromQId_", con);
                     com.CommandType = CommandType.StoredProcedure;
@@ -165,12 +169,15 @@ namespace KSD_School_Ritesh.DAL
                     Option correctOption = new Option();
                     while (rdr.Read())
                     {
+                        i = i + 1;
+                        var queCount = i;
                         Option currentOption = new Option
                         {
                             option_id = Convert.ToInt32(rdr["option_id"]),
                             que_id = Convert.ToInt32(rdr["que_id"]),
                             option_ = rdr["option_"].ToString(),
-                            is_correct = Convert.ToBoolean(rdr["is_correct"])
+                            is_correct = Convert.ToBoolean(rdr["is_correct"]),
+                           
                         };
                         if (currentOption.is_correct)
                         {
