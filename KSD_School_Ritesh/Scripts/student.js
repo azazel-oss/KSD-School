@@ -49,6 +49,7 @@ function Add() {
         Class_id: $('#Class_id').val(),
         section_id: $('#section_id').val()
     };
+    console.log(empObj);
     $.ajax({
         url: "/Home/Add",
         data: JSON.stringify(empObj),

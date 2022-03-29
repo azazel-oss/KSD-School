@@ -69,23 +69,6 @@ function populateQuestions() {
                         console.log(errormessage.responseText)
                     }
                 })
-
-                //for (const question of questionList) {
-
-                //    if (question.exam_id === exam_id) {
-                //        console.log(question)
-
-
-                //        html += `<tr><td>${question.que_no}</td>`;
-                //        html += `<td>${question.que_text}</td>`;
-                //        html += `<td>${question.subject}</td>`;
-                //        html += `<td>${question.class}</td>`;
-                //        html += `<td>${question.session}</td></tr>`;
-                //    }
-                //}
-                //html += '</tbody>';
-                //$('#question-details').html(html);
-
             }
         },
         error: function (errormessage) {

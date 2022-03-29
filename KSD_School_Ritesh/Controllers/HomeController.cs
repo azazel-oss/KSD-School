@@ -31,6 +31,7 @@ namespace KSD_School_Ritesh.Controllers
         SectionDAL sectionObj = new SectionDAL();
         TimetableDAL timetableObj = new TimetableDAL();
         QuestionDAL questionObj = new QuestionDAL();
+        QueDAL queObj = new QueDAL();
         ExamDAL examObj = new ExamDAL();
 
         #endregion
@@ -505,6 +506,12 @@ namespace KSD_School_Ritesh.Controllers
         {
             return Json(questionObj.Deleteque(ID), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult Addans(StudentAns que)
+        {
+            return Json(queObj.Addans(que), JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
     }

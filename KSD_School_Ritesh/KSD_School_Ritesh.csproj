@@ -130,6 +130,7 @@
     <Compile Include="DAL\FeesDAL.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="DAL\MarksDAL.cs" />
+    <Compile Include="DAL\QueDAL.cs" />
     <Compile Include="DAL\QuestionDAL.cs" />
     <Compile Include="DAL\RegisterDAL.cs" />
     <Compile Include="DAL\SectionDAL.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentAns.cs" />
     <Compile Include="Models\Subjects.cs" />
     <Compile Include="Models\Timetable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,7 +14,7 @@ namespace KSD_School_Ritesh.DAL
 
     {
         string cs = ConfigurationManager.ConnectionStrings["mycon"].ConnectionString;
-        public int Addque(Question que)
+        public int Addans(StudentAns que)
         {
 
             int i;
@@ -24,10 +24,11 @@ namespace KSD_School_Ritesh.DAL
                 SqlCommand com = new SqlCommand("ksd_edit", con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@feild1", que.que_id);
-                com.Parameters.AddWithValue("@feild2", que.que_no);
-                com.Parameters.AddWithValue("@feild3", que.que_text);
-                com.Parameters.AddWithValue("@feild3", que.exam_id);
-                com.Parameters.AddWithValue("@table", "4");
+                com.Parameters.AddWithValue("@feild2", que.student_id);
+                com.Parameters.AddWithValue("@feild3", que.selected_ans);
+                com.Parameters.AddWithValue("@feild4", que.exam_id);
+                
+                com.Parameters.AddWithValue("@table", "15");
                 i = com.ExecuteNonQuery();
             }
             return i;

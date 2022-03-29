@@ -1,10 +1,37 @@
-﻿//Load Data in Table when documents is ready  
+﻿
 $(document).ready(function () {
-    loadData();
-   });
+    loadData();    
+});
 
+function addRadioButtonsForm(arr) {
 
-//Load Data function  
+    const a = document.getElementsByClassName('a')[0];
+
+    let form = document.createElement('form');
+    form.setAttribute('name', 'test');
+    form.setAttribute('id', 'form');
+
+    for (element of arr) {
+        let radio = document.createElement('input');
+        radio.setAttribute('type', 'radio');
+        radio.setAttribute('id', element);
+        radio.setAttribute('name', 'Options');
+        form.appendChild(radio);
+   
+        let label = document.createElement('label');
+        label.setAttribute('for', element);
+        label.textContent = element;
+        form.appendChild(label);
+
+        let linebreak = document.createElement('br');
+        form.appendChild(linebreak);
+    }
+
+    a.appendChild(form);
+}
+
+var allEnt;
+
 function loadData() {
     $.ajax({
         url: "/Home/Listque",
@@ -17,75 +44,66 @@ function loadData() {
                 get: (searchParams, prop) => searchParams.get(prop),
             });
             let value = params.qno
-            console.log(value);
             var res = result.entries();
             for (var entry of result) {
-                console.log(entry);
+                allEnt = entry;
+
                 if (entry.que_no == value) {
+
+                    let arr = [entry.Option[0], entry.Option[1], entry.Option[2], entry.Option[3]];
+
                     html += '<tr>';
-                    html += '<td style="display: none;">' + entry.que_id + '</td>';
+                    html += '<td id = "que_id" style="display: none;" >' + entry.que_id + '</td>';
                     html += '<td>' + entry.que_no + '</td>';
-                    html += '<td style="display:none;">' + entry.exam_id + '</td>';
-                    html += '<td>' + entry.que_text + '</td>';
+                    html += '<td id = "exam_id" style="display:none;">' + entry.exam_id + '</td>';
+                    html += '<td>' + entry.que_text + '</td>';               
                     html += '<tr>';
-                    html += '<input type="radio" name="' + entry.Option[0] + '"/>';
-                    html += '</tr>';
-                    html += '<tr>';
-                    html += '<td>' + entry.Option[0]; + '</td>';
-                    html += '</tr>';
-                    html += '<tr>';
-                    html += '<td>' + entry.Option[1]; + '</td>';
-                    html += '</tr>';
-                    html += '<tr>';
-                    html += '<td>' + entry.Option[2]; + '</td>';
-                    html += '</tr>';
-                    html += '<tr>';
-                    html += '<td>' + entry.Option[3]; + '</td>';
-                    html += '</tr>';
-
-                    html += '<tr>';
-
                     html += '</tr>';
                     html += '</tr>';
+                    
+                    addRadioButtonsForm(arr);
                     break
-                }
-
+                    
+                }               
             }
-            //$.each(result, function (key, item) {
-            //    html += '<tr>';
-            //    //html += '<td style="display: none;">' + item.que_id + '</td>';
-            //    //html += '<td>' + item.que_no + '</td>';
-            //    //html += '<td style="display:none;">' + item.exam_id + '</td>';
-            //    //html += '<td>' + item.que_text + '</td>';
-            //    //html += '<tr>';
-            //    //html += '<td>' + item.Option[0]; + '</td>';
-            //    //html += '</tr>';
-            //    //html += '<tr>';
-            //    //html += '<td>' + item.Option[1]; + '</td>';
-            //    //html += '</tr>';
-            //    //html += '<tr>';
-            //    //html += '<td>' + item.Option[2]; + '</td>';
-            //    //html += '</tr>';
-            //    //html += '<tr>';
-            //    //html += '<td>' + item.Option[3]; + '</td>';
-            //    html += '</tr>';
-
-            //    html += '<tr>';
-
-            //    html += '</tr>';
-            //    //html += '</tr>';
-            //    console.log(result);
-            //});
             
-        $('.tbody').html(html);
-                
+
+            
+            $('.tbody').html(html);
+     
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+
+}
+console.log(allEnt);
+
+//Add Data Function   
+function Addans() {
+    
+    var empObj = {
+        Que_id: allEnt.que_id,
+        exam_id: allEnt.exam_id,
+        Student_id: $('#Student_id').val(),
+        Selected_ans: $("input[type='radio'][name='Options']:checked").val(),
+    };
+    console.log(empObj);
+    $.ajax({
+        url: "/Home/Addans",
+        data: JSON.stringify(empObj),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+           
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
     });
 }
-
 
 //Function for getting the Data Based upon Employee ID  
 function queGetbyID(EmpID) {
@@ -99,15 +117,11 @@ function queGetbyID(EmpID) {
         dataType: "json",
         success: function (result) {
             $('#que_id').val(result.que_id);
-            $('#que_no').val(result.que_no);
+            $('#Student_id').val(result.Student_id);
             $('#exam_id').val(result.exam_id);
             $('#que_text').val(result.que_text);
             $('#Option').val(result.Option);
            
-
-            $('#myModal').modal('show');
-            $('#btnUpdate').show();
-            $('#btnAdd').hide();
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
