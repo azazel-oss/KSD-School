@@ -1,0 +1,109 @@
+﻿<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/Timetable.js"></script>
+<div class="container">
+    <h2>Timetable</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Add New Record</button><br /><br />
+    <table class="table table-dark ">
+        <thead>
+            <tr>
+                <th>
+                    SectionId
+                </th>
+                <th>
+                    ClassId
+                </th>
+                <th>
+                    SubjectId
+                </th>
+                <th>
+                    StaffId
+                </th>
+                <th>
+                    Period
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add new schedule</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="id" placeholder="Code" style="display:none;" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="section">Section</label>
+                        <select name="section" id="section">
+                            <option value="" selected disabled hidden>Select section</option>
+                            @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.SectionItems)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label for="classname">Class</label>
+                        <select name="classname" id="classname">
+                            <option value="" selected disabled hidden>Select class</option>
+                            @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.ClassItems)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select name="subject" id="subject">
+                            <option value="" selected disabled hidden>Select subject</option>
+                            @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.SubjectItems)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label for="staff">Staff</label>
+                        <select name="staff" id="staff">
+                            <option value="" selected disabled hidden>Select staff</option>
+                            @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.StaffItems)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label for="period">Period</label>
+                        <input type="text" class="form-control" id="period" placeholder="Period" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

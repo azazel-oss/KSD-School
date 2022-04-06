@@ -1,0 +1,75 @@
+﻿@model dynamic
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/Examinfo.js"></script>
+
+
+<div class="container">
+    <center><h2>Exam Details</h2></center>
+    <h2>
+        <tr>
+            <td id="Student_name"  >@Session["Username"]</td>
+        </tr>
+    </h2>
+</div>
+@foreach (var session in Model.StudentList)
+{
+    string name = Convert.ToString(session.Name);
+    name = name.Replace(" ", String.Empty);
+    if (Convert.ToString(Session["Username"]) == name)
+    {
+        Session["studentid"]= Convert.ToString(session.Student_id);
+<h1 id="Student_id" >@Session["studentid"]</h1>
+}
+}
+@*<h2>
+        <tr>
+            <td id="Student_id">@Session["studentid"]</td>
+        </tr>
+    </h2>*@
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-4">
+            <label for="session_type">Session:</label>
+            <select id="session_type" class="form-select" aria-label="Default select example">
+                <option selected disabled hidden>Select session</option>
+                @foreach (var session in Model.SessionList)
+                {
+                    <option value="@session.SessionId">@session.SessionName</option>
+                }
+            </select>
+        </div>
+        <div class="col-4">
+            <label for="class_type">Class:</label>
+            <select id="class_type" class="form-select" aria-label="Default select example">
+                <option selected disabled hidden>Select class</option>
+                @foreach (var _class in Model.ClassList)
+                {
+                    <option value="@_class.Class_id">@_class.Class_name</option>
+                }
+            </select>
+        </div>
+        <div class="col-4">
+            <label for="subject_type">Subject:</label>
+            <select id="subject_type" class="form-select" aria-label="Default select example">
+                <option selected disabled hidden>Select subject</option>
+                @foreach (var subject in Model.SubjectList)
+                {
+                    <option value="@subject.Subject_id">@subject.Subject_name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <br />
+</div>
+
+<div class="container">
+    <div id="btn-text" class="alert alert-danger">* Add appropriate exam details to enable the add button</div>
+    <a href=" /home/Question?qno=1"><button type="button" id="new-question__btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();" disabled>Attempt exam</button></a><br /><br />
+    <div id="question-details"></div>
+</div>

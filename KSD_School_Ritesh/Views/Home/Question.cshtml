@@ -1,0 +1,89 @@
+﻿<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/Question.js"></script>
+<script type="text/javascript">
+    var privilage = @Session["studentid"]
+</script>
+
+@{ 
+    var totalque = 10;
+}
+
+
+
+<div class="container">
+    <h2>Class Record</h2>
+    <h2>
+        <br />
+        <tr>
+            <td id="Student_id">@Session["Username"]</td>
+        </tr>
+
+        <br />
+        <br />
+
+
+
+
+        <div class="row">
+            <div class="col-md-10">
+                <table>
+                    <tr>
+                        <td><a href="javascript:void(0);" class="btn btn-primary" onclick="saveBackward(this);"><< Previous</a></td>
+                        <td><a href=" @Url.Action("Question", "home", new { @token = Session["TOKEN"] }) "></a></td>
+                        @for (int i = 0; i < totalque; i++)
+                        {
+            <td>
+                <a href="@Url.Action("Question", "home", new {  @qno = (i + 1) })" class="btn btn-outline-primary" name="radio" id="qno" for="btnradio">@(i+1)</a>
+            </td>}
+                        <td><a href="javascript:void(0);" class="btn btn-primary" onclick="saveBackward(this);"> Next >></a></td>
+                        <td><a href=" @Url.Action("Question", "home", new { @token = Session["TOKEN"] }) "></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </h2>
+
+
+    <table class="table ">
+        <col width="10">
+        <col width="550">
+        <thead>
+            <tr>
+                <th style="display:none;">
+                    que_id
+                </th>
+                <th>
+                    
+                </th>
+                <th style="display:none;">
+                    Exam_id
+                </th>
+                <th>
+                    
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+    <div class="A">
+        <div class="a">
+        </div>
+    </div><br />
+    <button type="button" class="btn btn-primary" id="submit" onclick="return Addans();">Submit </button><br /><br />
+
+</div>
+        
+
+        
+        
+
+
+
+
+
+
+

@@ -1,0 +1,162 @@
+﻿@model dynamic
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/studentDetails.js"></script>
+<script type="text/javascript">
+    const feeList = @Html.Raw(Json.Encode(ViewData["FeeList"]));
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Fee Details</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Session</label>
+                        <label id="session_label"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="fee_type">Fee Type</label>
+                        <select id="fee_type" class="form-select" aria-label="Default select example" required>
+                            <option selected>Open this select menu</option>
+                            <option value="Admission Fee">Admission Fee</option>
+                            <option value="Tuition Fee">Tuition Fee</option>
+                            <option value="Travel Fee">Travel Fee</option>
+                            <option value="Other Fee">Other(Specify in comments)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="FeeAmount">Fee Amount</label>
+                        <input type="text" class="form-control" id="FeeAmount" placeholder="Amount" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration(in months)</label>
+                        <input type="text" class="form-control" id="duration" placeholder="Duration" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comments(optional)</label>
+                        <textarea class="form-control" id="comment"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddFee();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <center><h4 class="modal-title">Add Session Details</h4></center>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="session">Enter Session(Starting Year-Ending Year)</label>
+                        <input type="text" class="form-control" id="session" placeholder="eg: 2025-2026" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Enter Start Date(DD/MM/YYYY)</label>
+                        <input type="text" class="form-control" id="startDate" placeholder="eg: 03/05/2025" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAddSession" onclick="return AddSession();">Add</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<center><h2>Student Details</h2></center>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <label for="session_id">Session:</label>
+            <select id="session_type" class="form-select" aria-label="Default select example">
+                <option selected>Select session</option>
+                @foreach (var session in Model.SessionList)
+                {
+                    <option value="@session.SessionId">@session.SessionName</option>
+                }
+            </select>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sessionModal">Add new session</button><br /><br />
+
+            <h4>Student</h4>
+            <dl class="dl-horizontal">
+
+                <dt>
+                    <strong>Name</strong>
+                </dt>
+
+                <dd id="Name">
+                    @Model.student.Name
+                </dd>
+
+                <dt>
+                    <strong>Father's Name</strong>
+                </dt>
+
+                <dd id="Father_name">
+                    @Model.student.Father_name
+                </dd>
+
+                <dt>
+                    <strong>Father's Contact</strong>
+                </dt>
+
+                <dd id="Father_contact">
+                    @Model.student.Father_contact
+                </dd>
+
+                <dt>
+                    <strong>Address</strong>
+                </dt>
+
+                <dd id="Address">
+                    @Model.student.Address
+                </dd>
+
+                <dt>
+                    <strong>Class Id</strong>
+                </dt>
+
+                <dd id="Class_id">
+                    @Model.student.Class_id
+                </dd>
+
+                <dt>
+                    <strong>Emergency Contact</strong>
+                </dt>
+
+                <dd id="Emergency_Contact">
+                    @Model.student.Emergency_Contact
+                </dd>
+
+            </dl>
+        </div>
+        <div>
+            <table id="fee-details" class="table">
+
+            </table>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" id="addFee_btn" data-bs-toggle="modal" data-bs-target="#myModal">Add Fee Details</button><br /><br />
+        </div>
+    </div>
+</div>

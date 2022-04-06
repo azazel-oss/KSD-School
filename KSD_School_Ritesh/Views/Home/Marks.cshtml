@@ -1,0 +1,156 @@
+﻿@using KSD_School_Ritesh.Models
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/Marks.js"></script>
+<script type="text/javascript">
+    const Studentlist = @Html.Raw(Json.Encode(ViewData["Studentlist"]));
+    const Sessionlist = @Html.Raw(Json.Encode(ViewData["Sessionlist"]));
+    const Alldata = @Html.Raw(Json.Encode(ViewData["Alldata"]));
+</script>
+
+<div class="container">
+    <h2>Report Card</h2>
+    <div>
+        <div class="form-group">
+            <label for="fee_type">Student ID : </label>
+            <select id="Student_list" class="form-select" aria-label="Default select example">
+                <option selected>Select Student</option>
+                @foreach (string student in ViewData["Studentlist"] as List<string>)
+                {<option value="@student">@student</option>}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fee_type">Session : </label>
+            <select id="Session_list" class="form-select" aria-label="Default select example" required>
+                <option selected>Select session</option>
+                @foreach (string session in ViewData["Sessionlist"] as List<string>)
+                {<option value="@session">@session</option>}
+
+            </select>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="clearTextBox();">Add Marks</button><br /><br />
+    <table class="table table-dark " id="marks_Details">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Student Name
+                </th>
+                <th>
+                    Session
+                </th>
+                <th>
+                    Subject Name
+                </th>
+                <th>
+                    Marks
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Marks</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="id" style="display:none;">id</label>
+                        <input type="text" class="form-control" id="id" style="display:none;" placeholder="Marks ID" disabled="disabled" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Student_Id">Student Id</label>
+                        <input type="text" class="form-control" id="Student_Id" placeholder="Student Id" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Session_Id">Session Id</label>
+                        <input type="text" class="form-control" id="Session_Id" placeholder="Session Id" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Subject_Id">Subject Id</label>
+                        <input type="text" class="form-control" id="Subject_Id" placeholder="Subject Id" />
+                    </div>
+                    <div class="form-group">
+                        <label for="marks">Marks</label>
+                        <input type="text" class="form-control" id="marks" placeholder="marks" />
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update()">Update</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateMyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Update Marks</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="id" style="display:none;">id</label>
+                        <input type="text" class="form-control" id="id" style="display:none;" placeholder="Marks ID" disabled="disabled" />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Student_Id_update">Student Id</label>
+                        <label id="Student_Id_update"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Session_Id_update">Session Id</label>
+                        <label id="Session_Id_update"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Subject_Id_update">Subject Id</label>
+                        <label for="Subject_Id_update"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="marks">Marks</label>
+                        <input type="text" class="form-control" id="marks_update" placeholder="marks" />
+
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnupdate" onclick="Update();">Update</button>
+                @*<button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update()">Update</button>*@
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
